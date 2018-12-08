@@ -10,8 +10,8 @@
 #endif // _MSC_VER > 1000
 
 #include "BasicType.h"
-#include "stdafx.h"
 
+#define MAX_POINTS	30
 
 class MPolygon : public BasicType  
 {
@@ -23,7 +23,8 @@ public:
 	int getType();
 	void addPoint(CPoint point);
 private:
-	CObArray points;
+	int count;
+	CPoint points[MAX_POINTS];
 
 };
 

@@ -55,7 +55,7 @@ CCGWORK1112View::CCGWORK1112View()
 	type = NONE;
 	isDraw = false;
 
-	//polygon = NULL;
+	polygon = NULL;
 
 	list = new TypeList;
 }
@@ -135,6 +135,7 @@ CCGWORK1112Doc* CCGWORK1112View::GetDocument() // non-debug version is inline
 void CCGWORK1112View::OnLButtonDown(UINT nFlags, CPoint point) 
 {
 	// TODO: Add your message handler code here and/or call default
+
 	isDraw = true;
 	if (isDraw) {
 		this->DrawLButtonDown(nFlags, point);
@@ -156,16 +157,71 @@ void CCGWORK1112View::OnMouseMove(UINT nFlags, CPoint point)
 void CCGWORK1112View::OnLButtonUp(UINT nFlags, CPoint point) 
 {
 	// TODO: Add your message handler code here and/or call default
-	if (isDraw) {
-		this->DrawLButtonUp(nFlags, point);
+	if (type != NONE && type != POLYGON) {
+		if (isDraw) {
+			this->DrawLButtonUp(nFlags, point);
+		}
+		isDraw = false;
+	} else if (type == POLYGON) {
+		
 	}
-	isDraw = false;
+	
 
 	CView::OnLButtonUp(nFlags, point);
 }
 void CCGWORK1112View::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
 	// TODO: Add your message handler code here and/or call default
+	bool two[30][16] = 
+					{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
+					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
+					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
+					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
+					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
+					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
+					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
+					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
+					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
+	CDC* pDC = this->GetDC(); 
+	for (int i = 0; i < 30; i++) {
+		for (int j = 0; j < 4; j++) {
+			pDC->SetPixel(100+j, 100+i, RGB(255, 0, 0));
+		}
+	}
+	for (i = 0; i < 30; i++) {
+		for (int j = 0; j < 16; j++) {
+			if (two[i][j]) {
+				pDC->SetPixel(108+j, 100+i, RGB(255, 0, 0));
+			}
+		}
+	}
+	this->ReleaseDC(pDC);
+
+	if (type == POLYGON && count >= 3) {
+		this->drawLButtonDblClk(nFlags, point);
+		isDraw = false;
+	}
 	
 	CView::OnLButtonDblClk(nFlags, point);
 }
@@ -180,22 +236,24 @@ void CCGWORK1112View::DrawLButtonDown(UINT nFlags, CPoint point)
 		startPoint = point;
 		endPoint = point;
 		LButtonDown = true;
-	}
-	/*else if (type == POLYGON) {
+	}else if (type == POLYGON) {
 		SetCursor(cursor);
 		this->SetCapture();
 		if (polygon == NULL) {
 			polygon = new MPolygon();
+			count = 0;
 		}
 		polygon->addPoint(point);
+		count++;
 
 		startPoint = point;
 		endPoint = point;
 		LButtonDown = true;
-	}*/
+	}
 	
 
 }
+
 
 void CCGWORK1112View::DrawMouseMove(UINT nFlags, CPoint point)
 {
@@ -258,8 +316,7 @@ void CCGWORK1112View::DrawMouseMove(UINT nFlags, CPoint point)
 		circular2.draw(pDC, RGB(255, 0, 0));
 		
 		endPoint = point;
-	}
-	/*else if (LButtonDown && type == POLYGON) {
+	}else if (LButtonDown && type == POLYGON) {
 		pDC->SetROP2(R2_NOT);
 
 		Line line1;
@@ -272,7 +329,8 @@ void CCGWORK1112View::DrawMouseMove(UINT nFlags, CPoint point)
 		line2.setEndPoint(point);
 		line2.draw(pDC, RGB(255, 0, 0));
 		endPoint = point;
-	}*/
+	}
+	this->ReleaseDC(pDC);
 
 }
 
@@ -300,6 +358,21 @@ void CCGWORK1112View::DrawLButtonUp(UINT nFlags, CPoint point)
 	}
 	this->ReleaseDC(pDC);
 
+}
+void CCGWORK1112View::drawLButtonDblClk(UINT nFlags, CPoint point)
+{	if (type == POLYGON) {
+		SetCursor(cursor);
+		ReleaseCapture();
+
+		CDC* pDC = this->GetDC();
+		polygon->draw(pDC, RGB(255, 0, 0));
+		list->Add(polygon);
+		polygon = NULL;
+		count = 0;
+	
+		this->ReleaseDC(pDC);
+	}
+	
 }
 
 void CCGWORK1112View::OnDrawBezier() 
@@ -349,8 +422,3 @@ void CCGWORK1112View::OnDrawLine()
 }
 
 
-
-void CCGWORK1112View::drawLButtonDblClk(UINT nFlags, CPoint point)
-{
-
-}

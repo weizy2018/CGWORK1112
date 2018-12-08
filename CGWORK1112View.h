@@ -43,7 +43,8 @@ private:
 	
 	TypeList * list;
 
-	//MPolygon * polygon;
+	MPolygon * polygon;
+	int count;
 
 // Operations
 public:
