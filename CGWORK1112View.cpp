@@ -172,6 +172,7 @@ void CCGWORK1112View::OnLButtonUp(UINT nFlags, CPoint point)
 void CCGWORK1112View::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
 	// TODO: Add your message handler code here and/or call default
+	/*
 	bool two[30][16] = 
 					{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -217,6 +218,7 @@ void CCGWORK1112View::OnLButtonDblClk(UINT nFlags, CPoint point)
 		}
 	}
 	this->ReleaseDC(pDC);
+	*/
 
 	if (type == POLYGON && count >= 3) {
 		this->drawLButtonDblClk(nFlags, point);

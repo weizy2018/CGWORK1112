@@ -6,13 +6,13 @@
 --------------------Configuration: CGWORK1112 - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\weizy\AppData\Local\Temp\RSPB43C.tmp" with contents
+Creating temporary file "C:\Users\weizy\AppData\Local\Temp\RSP8ADA.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/CGWORK1112.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
 "E:\VC Projects\CGWORK1112\MPolygon.cpp"
 ]
-Creating command line "cl.exe @C:\Users\weizy\AppData\Local\Temp\RSPB43C.tmp" 
-Creating temporary file "C:\Users\weizy\AppData\Local\Temp\RSPB44D.tmp" with contents
+Creating command line "cl.exe @C:\Users\weizy\AppData\Local\Temp\RSP8ADA.tmp" 
+Creating temporary file "C:\Users\weizy\AppData\Local\Temp\RSP8ADB.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/CGWORK1112.pdb" /debug /machine:I386 /out:"Debug/CGWORK1112.exe" /pdbtype:sept 
 ".\Debug\BasicType.obj"
@@ -28,7 +28,7 @@ Creating temporary file "C:\Users\weizy\AppData\Local\Temp\RSPB44D.tmp" with con
 ".\Debug\TypeList.obj"
 ".\Debug\CGWORK1112.res"
 ]
-Creating command line "link.exe @C:\Users\weizy\AppData\Local\Temp\RSPB44D.tmp"
+Creating command line "link.exe @C:\Users\weizy\AppData\Local\Temp\RSP8ADB.tmp"
 <h3>Output Window</h3>
 Compiling...
 MPolygon.cpp
