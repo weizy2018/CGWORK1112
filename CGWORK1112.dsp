@@ -122,6 +122,14 @@ SOURCE=.\MCircular.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\MCube.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MPoint.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\MPolygon.cpp
 # End Source File
 # Begin Source File
@@ -168,6 +176,14 @@ SOURCE=.\MainFrm.h
 # Begin Source File
 
 SOURCE=.\MCircular.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MCube.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MPoint.h
 # End Source File
 # Begin Source File
 
