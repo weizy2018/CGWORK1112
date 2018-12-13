@@ -31,7 +31,7 @@ MCircular::~MCircular()
 
 }
 
-void MCircular::draw(CDC* pDC, COLORREF color) {
+void MCircular::draw(CDC* pDC) {
 	int x, y, d;
 
 	int r = (int)sqrt((startPoint.x - endPoint.x)*(startPoint.x - endPoint.x) + (startPoint.y - endPoint.y)*(startPoint.y - endPoint.y));

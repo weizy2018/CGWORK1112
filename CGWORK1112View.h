@@ -10,6 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "MPolygon.h"
+#include "MBezier.h"
 
 #define NONE		0
 #define RECT		1
@@ -44,6 +45,7 @@ private:
 	TypeList * list;
 
 	MPolygon * polygon;
+	MBezier * bezier;
 	int count;
 
 // Operations

@@ -34,7 +34,7 @@ int Line::getType() {
 }
 
 
-void Line::draw(CDC* pDC, COLORREF color) {
+void Line::draw(CDC* pDC) {
 	/*
 	pDC->MoveTo(startPoint);
 	pDC->LineTo(endPoint);

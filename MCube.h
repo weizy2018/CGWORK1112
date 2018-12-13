@@ -17,7 +17,7 @@ class MCube : public BasicType
 public:
 	MCube();
 	virtual ~MCube();
-	void draw(CDC* pDC, COLORREF color);
+	void draw(CDC* pDC);
 	int getType();
 	void addPoint(CPoint point) {}
 private:
@@ -25,13 +25,17 @@ private:
 	//int edge[12][2];
 	MPoint points[8];
 
-	int normalVector[6][3];
+	//int normalVector[6][3];
+	MPoint normalVector[6];
+	MPoint view;
 
 	COLORREF colors[6];
 public:
 	void calNormalVector();
 private:
 	void init();
+	bool isView(MPoint vector);
+	void drawFace(int i, CDC * pDC);
 
 };
 

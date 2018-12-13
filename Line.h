@@ -17,7 +17,7 @@ public:
 	Line(CPoint startPoint, CPoint endPoint);
 	virtual ~Line();
 public:
-	void draw(CDC* pDC, COLORREF color);
+	void draw(CDC* pDC);
 	int getType();
 	void addPoint(CPoint point) {}
 

@@ -19,7 +19,7 @@ public:
 	MPolygon();
 	virtual ~MPolygon();
 public:
-	void draw(CDC * pDC, COLORREF color);
+	void draw(CDC * pDC);
 	int getType();
 	void addPoint(CPoint point);
 private:

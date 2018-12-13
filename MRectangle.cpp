@@ -30,7 +30,7 @@ MRectangle::~MRectangle()
 
 }
 
-void MRectangle::draw(CDC* pDC, COLORREF color) {
+void MRectangle::draw(CDC* pDC) {
 	int temp;
 	if (startPoint.x > endPoint.x) {
 		temp = startPoint.x;

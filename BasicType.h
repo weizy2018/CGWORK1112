@@ -26,6 +26,7 @@ public:
 protected:
 	CPoint startPoint;
 	CPoint endPoint;
+	COLORREF color;
 
 public:
 	void setStartPoint(CPoint point);
@@ -33,7 +34,9 @@ public:
 	CPoint getStartPoint();
 	CPoint getEndPoint();
 
-	virtual void draw(CDC* pDC, COLORREF color);
+	void setColor(COLORREF color);
+
+	virtual void draw(CDC* pDC);
 	virtual int getType();
 	virtual void addPoint(CPoint point);
 

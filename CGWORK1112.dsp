@@ -110,11 +110,19 @@ SOURCE=.\CGWORK1112View.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\InputColorDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Line.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\MainFrm.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MBezier.cpp
 # End Source File
 # Begin Source File
 
@@ -167,11 +175,19 @@ SOURCE=.\CGWORK1112View.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\InputColorDlg.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Line.h
 # End Source File
 # Begin Source File
 
 SOURCE=.\MainFrm.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MBezier.h
 # End Source File
 # Begin Source File
 

@@ -18,7 +18,7 @@ public:
 	MRectangle(CPoint startPoint, CPoint endPoint);
 	virtual ~MRectangle();
 public:
-	void draw(CDC* pDC, COLORREF color);
+	void draw(CDC* pDC);
 	int getType();
 	void addPoint(CPoint point) {}
 

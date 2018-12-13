@@ -20,6 +20,7 @@ static char THIS_FILE[]=__FILE__;
 
 BasicType::BasicType()
 {
+	color = RGB(0, 0, 0);
 
 }
 
@@ -40,7 +41,7 @@ CPoint BasicType::getEndPoint() {
 	return endPoint;
 }
 
-void BasicType::draw(CDC *pDC, COLORREF color) {
+void BasicType::draw(CDC *pDC) {
 
 }
 int BasicType::getType() {
@@ -49,5 +50,9 @@ int BasicType::getType() {
 
 void BasicType::addPoint(CPoint point) {
 
+}
+
+void BasicType::setColor(COLORREF color) {
+	this->color = color;
 }
 

@@ -27,14 +27,14 @@ MPolygon::~MPolygon()
 {
 
 }
-void MPolygon::draw(CDC * pDC, COLORREF color) {
+void MPolygon::draw(CDC * pDC) {
 	int i, j;
 	for (i = 0; i < count - 1; i++) {
 		Line line(points[i], points[i+1]);
-		line.draw(pDC, color);
+		line.draw(pDC);
 	}
 	Line li(points[count - 1], points[0]);
-	li.draw(pDC, color);
+	li.draw(pDC);
 	
 	int width = (16+4)*5;
 	int height = 30+8;

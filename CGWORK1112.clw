@@ -14,10 +14,11 @@ Class2=CCGWORK1112Doc
 Class3=CCGWORK1112View
 Class4=CMainFrame
 
-ResourceCount=2
-Resource1=IDR_MAINFRAME
+ResourceCount=3
+Resource1=IDD_ABOUTBOX
 Class5=CAboutDlg
-Resource2=IDD_ABOUTBOX
+Resource2=IDR_MAINFRAME
+Resource3=IDD_DIALOG1
 
 [CLS:CCGWORK1112App]
 Type=0
@@ -30,6 +31,7 @@ Type=0
 HeaderFile=CGWORK1112Doc.h
 ImplementationFile=CGWORK1112Doc.cpp
 Filter=N
+LastObject=CCGWORK1112Doc
 
 [CLS:CCGWORK1112View]
 Type=0
@@ -46,7 +48,7 @@ Type=0
 HeaderFile=MainFrm.h
 ImplementationFile=MainFrm.cpp
 Filter=T
-LastObject=ID_DRAW_LINE
+LastObject=CMainFrame
 
 
 
@@ -134,4 +136,25 @@ Command6=ID_EDIT_PASTE
 Command7=ID_FILE_PRINT
 Command8=ID_APP_ABOUT
 CommandCount=8
+
+[DLG:IDD_DIALOG1]
+Type=1
+Class=?
+ControlCount=16
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_RECT_COLOR,static,1342308352
+Control4=IDC_STATIC_R1,static,1342308352
+Control5=IDC_STATIC_G1,static,1342308352
+Control6=IDC_STATIC_B1,static,1342308352
+Control7=IDC_RECT_R,edit,1350631552
+Control8=IDC_RECT_G,edit,1350631552
+Control9=IDC_RECT_B,edit,1350631552
+Control10=IDC_CIRCULAR_COLOR,static,1342308352
+Control11=IDC_STATIC_R2,static,1342308352
+Control12=IDC_CIRCULAR_R,edit,1350631552
+Control13=IDC_STATIC_G2,static,1342308352
+Control14=IDC_CIRCULAR_G,edit,1350631552
+Control15=IDC_STATIC_B2,static,1342308352
+Control16=IDC_CIRCULAR_B,edit,1350631552
 

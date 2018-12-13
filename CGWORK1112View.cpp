@@ -9,6 +9,7 @@
 #include "Line.h"
 #include "MRectangle.h"
 #include "MCircular.h"
+#include "MCube.h"
 
 #include <conio.h>
 
@@ -56,6 +57,7 @@ CCGWORK1112View::CCGWORK1112View()
 	isDraw = false;
 
 	polygon = NULL;
+	bezier = NULL;
 
 	list = new TypeList;
 }
@@ -84,7 +86,7 @@ void CCGWORK1112View::OnDraw(CDC* pDC)
 		
 		BasicType* pMap = (BasicType*)list->GetAt(i);
 
-		pMap->draw(pDC, RGB(255, 0, 0));
+		pMap->draw(pDC);
 	}
 
 }
@@ -157,13 +159,27 @@ void CCGWORK1112View::OnMouseMove(UINT nFlags, CPoint point)
 void CCGWORK1112View::OnLButtonUp(UINT nFlags, CPoint point) 
 {
 	// TODO: Add your message handler code here and/or call default
-	if (type != NONE && type != POLYGON) {
+	if (type != NONE && type != POLYGON && type != BEZIER) {
 		if (isDraw) {
 			this->DrawLButtonUp(nFlags, point);
 		}
 		isDraw = false;
 	} else if (type == POLYGON) {
 		
+	} else if (type == BEZIER) {
+		if (count == 4) {
+			CDC* pDC = this->GetDC();
+			SetCursor(cursor);
+			ReleaseCapture();
+	
+			bezier->draw(pDC);
+			list->Add(bezier);
+			bezier = NULL;
+			count = 0;
+			this->ReleaseDC(pDC);
+			isDraw = false;
+		}
+
 	}
 	
 
@@ -172,54 +188,7 @@ void CCGWORK1112View::OnLButtonUp(UINT nFlags, CPoint point)
 void CCGWORK1112View::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
 	// TODO: Add your message handler code here and/or call default
-	/*
-	bool two[30][16] = 
-					{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-					{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
-					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
-					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
-					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
-					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
-					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
-					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
-					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
-					{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
-	CDC* pDC = this->GetDC(); 
-	for (int i = 0; i < 30; i++) {
-		for (int j = 0; j < 4; j++) {
-			pDC->SetPixel(100+j, 100+i, RGB(255, 0, 0));
-		}
-	}
-	for (i = 0; i < 30; i++) {
-		for (int j = 0; j < 16; j++) {
-			if (two[i][j]) {
-				pDC->SetPixel(108+j, 100+i, RGB(255, 0, 0));
-			}
-		}
-	}
-	this->ReleaseDC(pDC);
-	*/
-
+	
 	if (type == POLYGON && count >= 3) {
 		this->drawLButtonDblClk(nFlags, point);
 		isDraw = false;
@@ -230,7 +199,7 @@ void CCGWORK1112View::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 void CCGWORK1112View::DrawLButtonDown(UINT nFlags, CPoint point)
 {
-	if (type != NONE && type != POLYGON) {
+	if (type != NONE && type != POLYGON && type != BEZIER && type != CUBE) {
 		SetCursor(cursor);
 	
 		this->SetCapture();
@@ -241,11 +210,26 @@ void CCGWORK1112View::DrawLButtonDown(UINT nFlags, CPoint point)
 	}else if (type == POLYGON) {
 		SetCursor(cursor);
 		this->SetCapture();
+
 		if (polygon == NULL) {
 			polygon = new MPolygon();
 			count = 0;
 		}
 		polygon->addPoint(point);
+		count++;
+
+		startPoint = point;
+		endPoint = point;
+		LButtonDown = true;
+	} else if (type == BEZIER) {
+		SetCursor(cursor);
+		this->SetCapture();
+
+		if (bezier == NULL) {
+			bezier = new MBezier();
+			count = 0;
+		}
+		bezier->addPoint(point);
 		count++;
 
 		startPoint = point;
@@ -259,7 +243,7 @@ void CCGWORK1112View::DrawLButtonDown(UINT nFlags, CPoint point)
 
 void CCGWORK1112View::DrawMouseMove(UINT nFlags, CPoint point)
 {
-	if (type != NONE) {
+	if (type != NONE && type != CUBE) {
 		SetCursor(cursor);
 	}
 	
@@ -272,7 +256,7 @@ void CCGWORK1112View::DrawMouseMove(UINT nFlags, CPoint point)
 		Line line1;
 		line1.setStartPoint(startPoint);
 		line1.setEndPoint(endPoint);
-		line1.draw(pDC, RGB(255, 0, 0));
+		line1.draw(pDC);
 
 		/*
 		dc.MoveTo(startPoint);
@@ -281,7 +265,7 @@ void CCGWORK1112View::DrawMouseMove(UINT nFlags, CPoint point)
 		Line line2;
 		line2.setStartPoint(startPoint);
 		line2.setEndPoint(point);
-		line2.draw(pDC, RGB(255, 0, 0));
+		line2.draw(pDC);
 		/*
 		dc.MoveTo(startPoint);
 		dc.LineTo(point);
@@ -295,12 +279,12 @@ void CCGWORK1112View::DrawMouseMove(UINT nFlags, CPoint point)
 		MRectangle rect1;
 		rect1.setStartPoint(startPoint);
 		rect1.setEndPoint(endPoint);
-		rect1.draw(pDC, RGB(255, 0, 0));
+		rect1.draw(pDC);
 
 		MRectangle rect2;
 		rect2.setStartPoint(startPoint);
 		rect2.setEndPoint(point);
-		rect2.draw(pDC, RGB(255, 0, 0));
+		rect2.draw(pDC);
 		
 		endPoint = point;
 
@@ -310,12 +294,12 @@ void CCGWORK1112View::DrawMouseMove(UINT nFlags, CPoint point)
 		MCircular circular1;
 		circular1.setStartPoint(startPoint);
 		circular1.setEndPoint(endPoint);
-		circular1.draw(pDC, RGB(255, 0, 0));
+		circular1.draw(pDC);
 
 		MCircular circular2;
 		circular2.setStartPoint(startPoint);
 		circular2.setEndPoint(point);
-		circular2.draw(pDC, RGB(255, 0, 0));
+		circular2.draw(pDC);
 		
 		endPoint = point;
 	}else if (LButtonDown && type == POLYGON) {
@@ -324,41 +308,74 @@ void CCGWORK1112View::DrawMouseMove(UINT nFlags, CPoint point)
 		Line line1;
 		line1.setStartPoint(startPoint);
 		line1.setEndPoint(endPoint);
-		line1.draw(pDC, RGB(255, 0, 0));
+		line1.draw(pDC);
 
 		Line line2;
 		line2.setStartPoint(startPoint);
 		line2.setEndPoint(point);
-		line2.draw(pDC, RGB(255, 0, 0));
+		line2.draw(pDC);
+		endPoint = point;
+	} else if (LButtonDown && type == BEZIER) {
+		pDC->SetROP2(R2_NOT);
+
+		Line line1;
+		line1.setStartPoint(startPoint);
+		line1.setEndPoint(endPoint);
+		line1.draw(pDC);
+
+		Line line2;
+		line2.setStartPoint(startPoint);
+		line2.setEndPoint(point);
+		line2.draw(pDC);
 		endPoint = point;
 	}
+
 	this->ReleaseDC(pDC);
 
 }
 
 void CCGWORK1112View::DrawLButtonUp(UINT nFlags, CPoint point)
 {
+	/*
 	if (type != NONE) {
 		SetCursor(cursor);
 		ReleaseCapture();
 	}
+	*/
 
-	CDC* pDC = this->GetDC();
+	//CDC* pDC = this->GetDC();
 
 	if (type == LINE) {
+		CDC* pDC = this->GetDC();
+		SetCursor(cursor);
+		ReleaseCapture();
+
 		Line * line = new Line(startPoint, endPoint);
-		line->draw(pDC, RGB(255, 0, 0));
+		line->draw(pDC);
 		list->Add(line);
+		this->ReleaseDC(pDC);
 	} else if (type == RECT) {
+		CDC* pDC = this->GetDC();
+		SetCursor(cursor);
+		ReleaseCapture();
+
 		MRectangle * rect = new MRectangle(startPoint, endPoint);
-		rect->draw(pDC, RGB(255, 0, 0));
+		rect->draw(pDC);
 		list->Add(rect);
+		this->ReleaseDC(pDC);
 	} else if (type == CIRCULAR) {
+		CDC* pDC = this->GetDC();
+		SetCursor(cursor);
+		ReleaseCapture();
+
 		MCircular * cir = new MCircular(startPoint, endPoint);
-		cir->draw(pDC, RGB(255, 0, 0));
+		cir->draw(pDC);
 		list->Add(cir);
+		this->ReleaseDC(pDC);
 	}
-	this->ReleaseDC(pDC);
+
+
+//	this->ReleaseDC(pDC);
 
 }
 void CCGWORK1112View::drawLButtonDblClk(UINT nFlags, CPoint point)
@@ -367,7 +384,7 @@ void CCGWORK1112View::drawLButtonDblClk(UINT nFlags, CPoint point)
 		ReleaseCapture();
 
 		CDC* pDC = this->GetDC();
-		polygon->draw(pDC, RGB(255, 0, 0));
+		polygon->draw(pDC);
 		list->Add(polygon);
 		polygon = NULL;
 		count = 0;
@@ -394,8 +411,11 @@ void CCGWORK1112View::OnDrawCircular()
 void CCGWORK1112View::OnDrawCube() 
 {
 	// TODO: Add your command handler code here
+	CDC* pDC = this->GetDC();
 	type = CUBE;
-	
+	MCube cube;
+	cube.draw(pDC);
+	this->ReleaseDC(pDC);
 }
 
 void CCGWORK1112View::OnDrawPolygon() 
