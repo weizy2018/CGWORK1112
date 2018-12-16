@@ -8,21 +8,23 @@ NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "CGWORK1112.h"
 LastPage=0
 
-ClassCount=7
+ClassCount=8
 Class1=CCGWORK1112App
 Class2=CCGWORK1112Doc
 Class3=CCGWORK1112View
 Class4=CMainFrame
 
-ResourceCount=5
-Resource1=IDD_DIALOG2
+ResourceCount=6
+Resource1=IDD_ABOUTBOX
 Class5=CAboutDlg
-Resource2=IDD_DIALOG1
-Resource3=IDD_ABOUTBOX
+Resource2=IDR_MAINFRAME
+Resource3=IDD_DIALOG3
 Class6=InputColorDlg2
-Resource4=IDR_MAINFRAME
+Resource4=IDD_DIALOG2
 Class7=InputColorDlgB
-Resource5=IDD_DIALOG3
+Resource5=IDD_DIALOG1
+Class8=Translation
+Resource6=IDD_DIALOG4
 
 [CLS:CCGWORK1112App]
 Type=0
@@ -44,7 +46,7 @@ ImplementationFile=CGWORK1112View.cpp
 Filter=C
 BaseClass=CView
 VirtualFilter=VWC
-LastObject=CCGWORK1112View
+LastObject=ID_SET_DATA
 
 
 [CLS:CMainFrame]
@@ -105,7 +107,7 @@ Command26=ID_MOVE_Z
 Command27=ID_SPIN_X
 Command28=ID_SPIN_Y
 Command29=ID_SPIN_Z
-Command30=ID_MENUITEM32783
+Command30=ID_SET_DATA
 Command31=ID_DRAW_BEZIER
 Command32=ID_SER_COLOR3
 Command33=ID_CLEAN_SCREEN
@@ -223,4 +225,24 @@ ImplementationFile=InputColorDlgB.cpp
 BaseClass=CDialog
 Filter=D
 VirtualFilter=dWC
+
+[DLG:IDD_DIALOG4]
+Type=1
+Class=Translation
+ControlCount=6
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_STATIC,static,1342308352
+Control4=IDC_STATIC,static,1342308352
+Control5=IDC_STEP,edit,1350631552
+Control6=IDC_ANGLE,edit,1350631552
+
+[CLS:Translation]
+Type=0
+HeaderFile=Translation.h
+ImplementationFile=Translation.cpp
+BaseClass=CDialog
+Filter=D
+VirtualFilter=dWC
+LastObject=IDC_ANGLE
 

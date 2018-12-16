@@ -12,6 +12,7 @@
 #include "InputColorDlg.h"
 #include "InputColorDlg2.h"
 #include "InputColorDlgB.h"
+#include "Translation.h"
 
 #include <conio.h>
 
@@ -51,6 +52,7 @@ BEGIN_MESSAGE_MAP(CCGWORK1112View, CView)
 	ON_COMMAND(ID_SPIN_Y, OnSpinY)
 	ON_COMMAND(ID_SPIN_Z, OnSpinZ)
 	ON_WM_KEYDOWN()
+	ON_COMMAND(ID_SET_DATA, OnSetData)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
@@ -87,7 +89,7 @@ CCGWORK1112View::CCGWORK1112View()
 	cube_Performance = NONE;
 	cube = NULL;
 	step = 10;
-	angle = 0;
+	angle = 10;
 }
 
 CCGWORK1112View::~CCGWORK1112View()
@@ -603,7 +605,45 @@ void CCGWORK1112View::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				flag = true;
 			}
 		} else if (cube_Performance == MOVE_Y) {
-
+			if(nChar == 65) {
+				cube->move_y(-step);
+				flag = true;
+			} else if (nChar == 76) {
+				cube->move_y(step);
+				flag = true;
+			}
+		} else if (cube_Performance == MOVE_Z) {
+			if (nChar == 65) {
+				cube->move_z(-step);
+				flag = true;
+			} else if (nChar == 76) {
+				cube->move_z(step);
+				flag = true;
+			}
+		} else if (cube_Performance == SPIN_X) {
+			if (nChar == 65) {
+				cube->rotate_x(-angle);
+				flag = true;
+			} else if (nChar == 76) {
+				cube->rotate_x(angle);
+				flag = true;
+			}
+		} else if (cube_Performance == SPIN_Y) {
+			if (nChar == 65) {
+				cube->rotate_y(-angle);
+				flag = true;
+			} else if (nChar == 76) {
+				cube->rotate_y(angle);
+				flag = true;
+			}
+		} else if (cube_Performance == SPIN_Z)  {
+			if (nChar == 65) {
+				cube->rotate_z(-angle);
+				flag = true;
+			} else if (nChar == 76) {
+				cube->rotate_z(angle);
+				flag = true;
+			}
 		}
 
 		if (flag) {
@@ -617,4 +657,15 @@ void CCGWORK1112View::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	}
 	
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+void CCGWORK1112View::OnSetData() 
+{
+	// TODO: Add your command handler code here
+	Translation tr;
+	if (tr.DoModal() == IDOK) {
+		step = tr.step;
+		angle = tr.angle;
+	}
+	
 }

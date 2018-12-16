@@ -6,12 +6,15 @@
 #include "CGWORK1112.h"
 #include "MCube.h"
 #include "Line.h"
+#include "cmath"
 
 #ifdef _DEBUG
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
+
+#define pi 3.1415926
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -194,11 +197,25 @@ void MCube::move_z(int step) {
 
 
 void MCube::rotate_x(int angle) {
+	for (int i = 0; i < 8; i++) {
+		MPoint p = points[i];
+		points[i].y = (int)(p.y * cos(angle*pi/180.0) - p.z * sin(angle*pi/180.0));
+		points[i].z = (int)(p.y * sin(angle*pi/180.0) + p.z * cos(angle*pi/180.0));
+	}
 
 }
 void MCube::rotate_y(int angle) {
+	for (int i = 0; i < 8; i++) {
+		MPoint p = points[i];
+		points[i].x = (int)(p.x * cos(angle*pi/180.0) + p.z * sin(angle*pi/180.0));
+		points[i].z = (int)(-p.x * sin(angle*pi/180.0) + p.z * cos(angle*pi/180.0)); 
+	}
 
 }
 void MCube::rotate_z(int angle) {
-
+	for (int i = 0; i < 8; i++) {
+		MPoint p = points[i];
+		points[i].x = (int)(p.x * cos(angle*pi/180.0) - p.y * sin(angle*pi/180.0));
+		points[i].y = (int)(p.x * sin(angle*pi/180.0) + p.y * cos(angle*pi/180.0));
+	}
 }

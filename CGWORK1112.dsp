@@ -159,6 +159,10 @@ SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Translation.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\TypeList.cpp
 # End Source File
 # End Group
@@ -232,6 +236,10 @@ SOURCE=.\Resource.h
 # Begin Source File
 
 SOURCE=.\StdAfx.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Translation.h
 # End Source File
 # Begin Source File
 

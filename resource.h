@@ -8,6 +8,7 @@
 #define IDD_DIALOG1                     130
 #define IDD_DIALOG2                     131
 #define IDD_DIALOG3                     133
+#define IDD_DIALOG4                     134
 #define IDC_RECT_COLOR                  1000
 #define IDC_STATIC_R1                   1001
 #define IDC_STATIC_G1                   1002
@@ -29,6 +30,8 @@
 #define IDC_FILL_G                      1018
 #define IDC_FILL_B                      1019
 #define IDC_CHECK1                      1021
+#define IDC_STEP                        1027
+#define IDC_ANGLE                       1028
 #define IDC_CURVE_R                     1029
 #define IDC_CURVE_G                     1030
 #define IDC_CURVE_B                     1031
@@ -44,7 +47,7 @@
 #define ID_SPIN_X                       32780
 #define ID_SPIN_Y                       32781
 #define ID_SPIN_Z                       32782
-#define ID_MENUITEM32783                32783
+#define ID_SET_DATA                     32783
 #define ID_DRAW_BEZIER                  32784
 #define ID_DRAW_LINE                    32785
 #define ID_SER_COLOR3                   32786
@@ -55,9 +58,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        134
+#define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32788
-#define _APS_NEXT_CONTROL_VALUE         1027
+#define _APS_NEXT_CONTROL_VALUE         1028
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
