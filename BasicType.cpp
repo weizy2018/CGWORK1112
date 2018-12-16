@@ -21,6 +21,7 @@ static char THIS_FILE[]=__FILE__;
 BasicType::BasicType()
 {
 	color = RGB(0, 0, 0);
+	color2 = RGB(0, 0, 0);
 
 }
 
@@ -52,7 +53,8 @@ void BasicType::addPoint(CPoint point) {
 
 }
 
-void BasicType::setColor(COLORREF color) {
+void BasicType::setColor(COLORREF color, COLORREF color2) {
 	this->color = color;
+	this->color2 = color2;
 }
 

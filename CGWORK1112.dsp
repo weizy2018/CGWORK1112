@@ -114,6 +114,14 @@ SOURCE=.\InputColorDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\InputColorDlg2.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\InputColorDlgB.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Line.cpp
 # End Source File
 # Begin Source File
@@ -176,6 +184,14 @@ SOURCE=.\CGWORK1112View.h
 # Begin Source File
 
 SOURCE=.\InputColorDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\InputColorDlg2.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\InputColorDlgB.h
 # End Source File
 # Begin Source File
 

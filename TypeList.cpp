@@ -30,4 +30,5 @@ void TypeList::clearList() {
 	for (int i = 0; i < this->GetSize(); i++) {
 		delete GetAt(i);
 	}
+	this->RemoveAll();
 }

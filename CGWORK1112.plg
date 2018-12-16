@@ -6,21 +6,24 @@
 --------------------Configuration: CGWORK1112 - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\weizy\AppData\Local\Temp\RSP2B7B.tmp" with contents
+Creating temporary file "C:\Users\weizy\AppData\Local\Temp\RSPE70E.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/CGWORK1112.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"E:\VC Projects\CGWORK1112\MCube.cpp"
+"E:\VC Projects\CGWORK1112\CGWORK1112View.cpp"
 ]
-Creating command line "cl.exe @C:\Users\weizy\AppData\Local\Temp\RSP2B7B.tmp" 
-Creating temporary file "C:\Users\weizy\AppData\Local\Temp\RSP2B8C.tmp" with contents
+Creating command line "cl.exe @C:\Users\weizy\AppData\Local\Temp\RSPE70E.tmp" 
+Creating temporary file "C:\Users\weizy\AppData\Local\Temp\RSPE70F.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/CGWORK1112.pdb" /debug /machine:I386 /out:"Debug/CGWORK1112.exe" /pdbtype:sept 
 ".\Debug\BasicType.obj"
 ".\Debug\CGWORK1112.obj"
 ".\Debug\CGWORK1112Doc.obj"
 ".\Debug\CGWORK1112View.obj"
+".\Debug\InputColorDlg.obj"
+".\Debug\InputColorDlg2.obj"
 ".\Debug\Line.obj"
 ".\Debug\MainFrm.obj"
+".\Debug\MBezier.obj"
 ".\Debug\MCircular.obj"
 ".\Debug\MCube.obj"
 ".\Debug\MPoint.obj"
@@ -29,12 +32,12 @@ Creating temporary file "C:\Users\weizy\AppData\Local\Temp\RSP2B8C.tmp" with con
 ".\Debug\StdAfx.obj"
 ".\Debug\TypeList.obj"
 ".\Debug\CGWORK1112.res"
-".\Debug\MBezier.obj"
+".\Debug\InputColorDlgB.obj"
 ]
-Creating command line "link.exe @C:\Users\weizy\AppData\Local\Temp\RSP2B8C.tmp"
+Creating command line "link.exe @C:\Users\weizy\AppData\Local\Temp\RSPE70F.tmp"
 <h3>Output Window</h3>
 Compiling...
-MCube.cpp
+CGWORK1112View.cpp
 Linking...
 
 

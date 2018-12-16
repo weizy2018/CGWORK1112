@@ -8,17 +8,21 @@ NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "CGWORK1112.h"
 LastPage=0
 
-ClassCount=5
+ClassCount=7
 Class1=CCGWORK1112App
 Class2=CCGWORK1112Doc
 Class3=CCGWORK1112View
 Class4=CMainFrame
 
-ResourceCount=3
-Resource1=IDD_ABOUTBOX
+ResourceCount=5
+Resource1=IDD_DIALOG2
 Class5=CAboutDlg
-Resource2=IDR_MAINFRAME
-Resource3=IDD_DIALOG1
+Resource2=IDD_DIALOG1
+Resource3=IDD_ABOUTBOX
+Class6=InputColorDlg2
+Resource4=IDR_MAINFRAME
+Class7=InputColorDlgB
+Resource5=IDD_DIALOG3
 
 [CLS:CCGWORK1112App]
 Type=0
@@ -40,7 +44,7 @@ ImplementationFile=CGWORK1112View.cpp
 Filter=C
 BaseClass=CView
 VirtualFilter=VWC
-LastObject=CCGWORK1112View
+LastObject=ID_SER_COLOR3
 
 
 [CLS:CMainFrame]
@@ -90,10 +94,10 @@ Command15=ID_VIEW_STATUS_BAR
 Command16=ID_APP_ABOUT
 Command17=ID_DRAW_RECT
 Command18=ID_DRAW_CIRCULAR
-Command19=ID_MENUITEM32773
-Command20=ID_DRAW_LINE
+Command19=ID_DRAW_LINE
+Command20=ID_SET_COLOR1
 Command21=ID_DRAW_POLYGON
-Command22=ID_MENUITEM32775
+Command22=ID_SET_COLOR2
 Command23=ID_DRAW_CUBE
 Command24=ID_MOVE_X
 Command25=ID_MOVE_Y
@@ -103,7 +107,8 @@ Command28=ID_SPIN_Y
 Command29=ID_SPIN_Z
 Command30=ID_MENUITEM32783
 Command31=ID_DRAW_BEZIER
-CommandCount=31
+Command32=ID_SER_COLOR3
+CommandCount=32
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -140,7 +145,7 @@ CommandCount=8
 [DLG:IDD_DIALOG1]
 Type=1
 Class=?
-ControlCount=16
+ControlCount=17
 Control1=IDOK,button,1342242817
 Control2=IDCANCEL,button,1342242816
 Control3=IDC_RECT_COLOR,static,1342308352
@@ -157,4 +162,64 @@ Control13=IDC_STATIC_G2,static,1342308352
 Control14=IDC_CIRCULAR_G,edit,1350631552
 Control15=IDC_STATIC_B2,static,1342308352
 Control16=IDC_CIRCULAR_B,edit,1350631552
+Control17=IDC_CHECK1,button,1342242819
+
+[DLG:IDD_DIALOG2]
+Type=1
+Class=InputColorDlg2
+ControlCount=16
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_BORDER_R,edit,1350631552
+Control4=IDC_STATIC,static,1342308352
+Control5=IDC_STATIC,static,1342308352
+Control6=IDC_STATIC,static,1342308352
+Control7=IDC_BORDER_G,edit,1350631552
+Control8=IDC_STATIC,static,1342308352
+Control9=IDC_BORDER_B,edit,1350631552
+Control10=IDC_STATIC,static,1342308352
+Control11=IDC_STATIC,static,1342308352
+Control12=IDC_FILL_R,edit,1350631552
+Control13=IDC_STATIC,static,1342308352
+Control14=IDC_FILL_G,edit,1350631552
+Control15=IDC_STATIC,static,1342308352
+Control16=IDC_FILL_B,edit,1350631552
+
+[CLS:InputColorDlg2]
+Type=0
+HeaderFile=InputColorDlg2.h
+ImplementationFile=InputColorDlg2.cpp
+BaseClass=CDialog
+Filter=D
+VirtualFilter=dWC
+LastObject=ID_APP_ABOUT
+
+[DLG:IDD_DIALOG3]
+Type=1
+Class=InputColorDlgB
+ControlCount=16
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_STATIC,static,1342308352
+Control4=IDC_STATIC,static,1342308352
+Control5=IDC_STATIC,static,1342308352
+Control6=IDC_BORDER_R,edit,1350631552
+Control7=IDC_STATIC,static,1342308352
+Control8=IDC_BORDER_G,edit,1350631552
+Control9=IDC_STATIC,static,1342308352
+Control10=IDC_BORDER_B,edit,1350631552
+Control11=IDC_STATIC,static,1342308352
+Control12=IDC_CURVE_R,edit,1350631552
+Control13=IDC_STATIC,static,1342308352
+Control14=IDC_CURVE_G,edit,1350631552
+Control15=IDC_STATIC,static,1342308352
+Control16=IDC_CURVE_B,edit,1350631552
+
+[CLS:InputColorDlgB]
+Type=0
+HeaderFile=InputColorDlgB.h
+ImplementationFile=InputColorDlgB.cpp
+BaseClass=CDialog
+Filter=D
+VirtualFilter=dWC
 

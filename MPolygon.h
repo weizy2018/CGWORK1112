@@ -27,7 +27,7 @@ private:
 	CPoint points[MAX_POINTS];
 private:
 	bool isInner(int x, int y);
-	void printPixel(CDC * pDC, int start, int end, int type, COLORREF color);
+	void printPixel(CDC * pDC, int start, int end, int type);
 
 };
 

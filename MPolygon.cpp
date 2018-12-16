@@ -31,9 +31,11 @@ void MPolygon::draw(CDC * pDC) {
 	int i, j;
 	for (i = 0; i < count - 1; i++) {
 		Line line(points[i], points[i+1]);
+		line.setColor(color);
 		line.draw(pDC);
 	}
 	Line li(points[count - 1], points[0]);
+	li.setColor(color);
 	li.draw(pDC);
 	
 	int width = (16+4)*5;
@@ -64,7 +66,7 @@ void MPolygon::draw(CDC * pDC) {
 		for (j = min_x; j < max_x; j++) {
 			//MPolygon::printPixel(CDC * pDC, int x, int y, int type, COLORREL color)
 			
-			printPixel(pDC, j, i, type%5, color);
+			printPixel(pDC, j, i, type%5);
 			j += 20;
 			j--;
 			type++;
@@ -111,7 +113,7 @@ bool MPolygon::isInner(int x, int y) {
 		return true;
 }
 
-void MPolygon::printPixel(CDC * pDC, int x, int y, int type, COLORREF color) {
+void MPolygon::printPixel(CDC * pDC, int x, int y, int type) {
 	bool two[30][16] = 
 					{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 					{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -164,7 +166,7 @@ void MPolygon::printPixel(CDC * pDC, int x, int y, int type, COLORREF color) {
 		for (i = 0; i < 30; i++) {
 			for (j = 0; j < 4; j++) {
 				if (isInner(x+j, y+i))
-					pDC->SetPixel(x+j, y+i, color);
+					pDC->SetPixel(x+j, y+i, color2);
 			}
 		}
 
@@ -172,7 +174,7 @@ void MPolygon::printPixel(CDC * pDC, int x, int y, int type, COLORREF color) {
 		for (i = 0; i < 30; i++) {
 			for (j = 0; j < 16; j++){
 				if (two[i][j] && isInner(x+j, y+i))
-					pDC->SetPixel(x+j, y+i, color);
+					pDC->SetPixel(x+j, y+i, color2);
 			}
 		}
 	}

@@ -42,6 +42,7 @@ void MBezier::draw(CDC* pDC) {
 	for (int i = 0; i < dist; i++) {
 		CPoint endPoint = decas(t);
 		Line line(startPoint, endPoint);
+		line.setColor(color2);
 		line.draw(pDC);
 		startPoint = endPoint;
 		t += delt;
@@ -68,6 +69,7 @@ void MBezier::drawLine(CDC* pDC) {
 
 	for (i = 0; i < count - 1; i++) {
 		Line line(points[i], points[i+1]);
+		line.setColor(color);
 		line.draw(pDC);
 		x = points[i+1].x;
 		y = points[i+1].y;

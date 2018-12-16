@@ -10,6 +10,9 @@
 #include "MRectangle.h"
 #include "MCircular.h"
 #include "MCube.h"
+#include "InputColorDlg.h"
+#include "InputColorDlg2.h"
+#include "InputColorDlgB.h"
 
 #include <conio.h>
 
@@ -38,6 +41,9 @@ BEGIN_MESSAGE_MAP(CCGWORK1112View, CView)
 	ON_COMMAND(ID_DRAW_RECT, OnDrawRect)
 	ON_COMMAND(ID_DRAW_LINE, OnDrawLine)
 	ON_WM_LBUTTONDBLCLK()
+	ON_COMMAND(ID_SET_COLOR1, OnSetColor1)
+	ON_COMMAND(ID_SET_COLOR2, OnSetColor2)
+	ON_COMMAND(ID_SER_COLOR3, OnSerColor3)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
@@ -60,6 +66,17 @@ CCGWORK1112View::CCGWORK1112View()
 	bezier = NULL;
 
 	list = new TypeList;
+
+	rectColor = RGB(0, 0, 0);
+	cirColor = RGB(0, 0, 0);
+
+	borderColor = RGB(0, 0, 0);
+	fillColor = RGB(0, 0, 0);
+
+	bezierBorder = RGB(0, 0, 0);
+	bezierCurve = RGB(0, 0, 0);
+
+	category = 1;
 }
 
 CCGWORK1112View::~CCGWORK1112View()
@@ -172,6 +189,7 @@ void CCGWORK1112View::OnLButtonUp(UINT nFlags, CPoint point)
 			SetCursor(cursor);
 			ReleaseCapture();
 	
+			bezier->setColor(bezierBorder, bezierCurve);
 			bezier->draw(pDC);
 			list->Add(bezier);
 			bezier = NULL;
@@ -351,6 +369,7 @@ void CCGWORK1112View::DrawLButtonUp(UINT nFlags, CPoint point)
 		ReleaseCapture();
 
 		Line * line = new Line(startPoint, endPoint);
+		line->setColor(rectColor);
 		line->draw(pDC);
 		list->Add(line);
 		this->ReleaseDC(pDC);
@@ -360,6 +379,7 @@ void CCGWORK1112View::DrawLButtonUp(UINT nFlags, CPoint point)
 		ReleaseCapture();
 
 		MRectangle * rect = new MRectangle(startPoint, endPoint);
+		rect->setColor(rectColor);
 		rect->draw(pDC);
 		list->Add(rect);
 		this->ReleaseDC(pDC);
@@ -369,6 +389,7 @@ void CCGWORK1112View::DrawLButtonUp(UINT nFlags, CPoint point)
 		ReleaseCapture();
 
 		MCircular * cir = new MCircular(startPoint, endPoint);
+		cir->setColor(cirColor);
 		cir->draw(pDC);
 		list->Add(cir);
 		this->ReleaseDC(pDC);
@@ -384,6 +405,7 @@ void CCGWORK1112View::drawLButtonDblClk(UINT nFlags, CPoint point)
 		ReleaseCapture();
 
 		CDC* pDC = this->GetDC();
+		polygon->setColor(borderColor, fillColor);
 		polygon->draw(pDC);
 		list->Add(polygon);
 		polygon = NULL;
@@ -398,6 +420,10 @@ void CCGWORK1112View::OnDrawBezier()
 {
 	// TODO: Add your command handler code here
 	type = BEZIER;
+	if (category != 4) {
+		this->clear();
+		category = 4;
+	}
 	
 }
 
@@ -405,12 +431,18 @@ void CCGWORK1112View::OnDrawCircular()
 {
 	// TODO: Add your command handler code here
 	type = CIRCULAR;
+	if (category != 1) {
+		this->clear();
+		category = 1;
+	}
 	
 }
 
 void CCGWORK1112View::OnDrawCube() 
 {
 	// TODO: Add your command handler code here
+	this->clear();
+
 	CDC* pDC = this->GetDC();
 	type = CUBE;
 	MCube cube;
@@ -422,6 +454,10 @@ void CCGWORK1112View::OnDrawPolygon()
 {
 	// TODO: Add your command handler code here
 	type = POLYGON;
+	if (category != 2) {
+		this->clear();
+		category = 2;
+	}
 	
 }
 
@@ -429,6 +465,10 @@ void CCGWORK1112View::OnDrawRect()
 {
 	// TODO: Add your command handler code here
 	type = RECT;
+	if (category != 1) {
+		this->clear();
+		category = 1;
+	}
 	
 }
 
@@ -436,11 +476,54 @@ void CCGWORK1112View::OnDrawLine()
 {
 	// TODO: Add your command handler code here
 	type = LINE;
-	/*
-	AllocConsole();
-	_cprintf("type = %d\n", type);
-	FreeConsole();
-	*/
+	if (category != 1) {
+		this->clear();
+		category = 1;
+	}
+	
 }
 
+
+
+void CCGWORK1112View::OnSetColor1() 
+{
+	// TODO: Add your command handler code here
+	InputColorDlg input;
+	if (input.DoModal() == IDOK) {
+		rectColor = RGB(input.rect_r, input.rect_g, input.rect_b);
+
+		cirColor = RGB(input.cir_r, input.cir_g, input.cir_b);
+	}
+
+	
+}
+
+void CCGWORK1112View::OnSetColor2() 
+{
+	// TODO: Add your command handler code here
+	InputColorDlg2 input;
+	if (input.DoModal() == IDOK) {
+		borderColor = RGB(input.border_r, input.border_g, input.border_b);
+
+		fillColor = RGB(input.fill_r, input.fill_g, input.fill_b);
+	}
+
+}
+
+void CCGWORK1112View::OnSerColor3() 
+{
+	// TODO: Add your command handler code here
+	InputColorDlgB input;
+	if (input.DoModal() == IDOK) {
+		bezierBorder = RGB(input.border_r, input.border_g, input.border_b);
+
+		bezierCurve = RGB(input.curve_r, input.curve_g, input.curve_b);
+	}
+	
+}
+
+void CCGWORK1112View::clear() {
+	this->list->clearList();
+	this->Invalidate();
+}
 

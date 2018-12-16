@@ -47,6 +47,21 @@ private:
 	MPolygon * polygon;
 	MBezier * bezier;
 	int count;
+private:
+	int category;
+
+private:
+	COLORREF rectColor;
+	COLORREF cirColor;
+
+	COLORREF borderColor;
+	COLORREF fillColor;
+
+	COLORREF bezierBorder;
+	COLORREF bezierCurve;
+public:
+	void clear();
+
 
 // Operations
 public:
@@ -90,6 +105,9 @@ protected:
 	afx_msg void OnDrawRect();
 	afx_msg void OnDrawLine();
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	afx_msg void OnSetColor1();
+	afx_msg void OnSetColor2();
+	afx_msg void OnSerColor3();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
