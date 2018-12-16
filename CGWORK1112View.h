@@ -11,6 +11,7 @@
 
 #include "MPolygon.h"
 #include "MBezier.h"
+#include "MCube.h"
 
 #define NONE		0
 #define RECT		1
@@ -20,6 +21,14 @@
 #define BEZIER		5
 
 #define LINE		6
+
+#define MOVE_X		1
+#define MOVE_Y		2
+#define MOVE_Z		3
+#define SPIN_X		4
+#define SPIN_Y		5
+#define SPIN_Z		6
+
 
 
 
@@ -47,6 +56,11 @@ private:
 	MPolygon * polygon;
 	MBezier * bezier;
 	int count;
+
+	int cube_Performance;
+	MCube * cube;
+	int step;
+	int angle;
 private:
 	int category;
 
@@ -108,6 +122,14 @@ protected:
 	afx_msg void OnSetColor1();
 	afx_msg void OnSetColor2();
 	afx_msg void OnSerColor3();
+	afx_msg void OnCleanScreen();
+	afx_msg void OnMoveX();
+	afx_msg void OnMoveY();
+	afx_msg void OnMoveZ();
+	afx_msg void OnSpinX();
+	afx_msg void OnSpinY();
+	afx_msg void OnSpinZ();
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

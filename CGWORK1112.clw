@@ -44,7 +44,7 @@ ImplementationFile=CGWORK1112View.cpp
 Filter=C
 BaseClass=CView
 VirtualFilter=VWC
-LastObject=ID_SER_COLOR3
+LastObject=CCGWORK1112View
 
 
 [CLS:CMainFrame]
@@ -108,7 +108,8 @@ Command29=ID_SPIN_Z
 Command30=ID_MENUITEM32783
 Command31=ID_DRAW_BEZIER
 Command32=ID_SER_COLOR3
-CommandCount=32
+Command33=ID_CLEAN_SCREEN
+CommandCount=33
 
 [ACL:IDR_MAINFRAME]
 Type=1

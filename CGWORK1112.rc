@@ -168,6 +168,7 @@ BEGIN
             MENUITEM "…Ë÷√—’…´",                    ID_SER_COLOR3
         END
     END
+    MENUITEM "«Â∆¡",                        ID_CLEAN_SCREEN
 END
 
 

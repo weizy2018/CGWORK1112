@@ -9,7 +9,6 @@
 #include "Line.h"
 #include "MRectangle.h"
 #include "MCircular.h"
-#include "MCube.h"
 #include "InputColorDlg.h"
 #include "InputColorDlg2.h"
 #include "InputColorDlgB.h"
@@ -44,6 +43,14 @@ BEGIN_MESSAGE_MAP(CCGWORK1112View, CView)
 	ON_COMMAND(ID_SET_COLOR1, OnSetColor1)
 	ON_COMMAND(ID_SET_COLOR2, OnSetColor2)
 	ON_COMMAND(ID_SER_COLOR3, OnSerColor3)
+	ON_COMMAND(ID_CLEAN_SCREEN, OnCleanScreen)
+	ON_COMMAND(ID_MOVE_X, OnMoveX)
+	ON_COMMAND(ID_MOVE_Y, OnMoveY)
+	ON_COMMAND(ID_MOVE_Z, OnMoveZ)
+	ON_COMMAND(ID_SPIN_X, OnSpinX)
+	ON_COMMAND(ID_SPIN_Y, OnSpinY)
+	ON_COMMAND(ID_SPIN_Z, OnSpinZ)
+	ON_WM_KEYDOWN()
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
@@ -77,6 +84,10 @@ CCGWORK1112View::CCGWORK1112View()
 	bezierCurve = RGB(0, 0, 0);
 
 	category = 1;
+	cube_Performance = NONE;
+	cube = NULL;
+	step = 10;
+	angle = 0;
 }
 
 CCGWORK1112View::~CCGWORK1112View()
@@ -445,8 +456,9 @@ void CCGWORK1112View::OnDrawCube()
 
 	CDC* pDC = this->GetDC();
 	type = CUBE;
-	MCube cube;
-	cube.draw(pDC);
+	cube = new MCube(); 
+	list->Add(cube);
+	cube->draw(pDC);
 	this->ReleaseDC(pDC);
 }
 
@@ -527,3 +539,82 @@ void CCGWORK1112View::clear() {
 	this->Invalidate();
 }
 
+
+void CCGWORK1112View::OnCleanScreen() 
+{
+	// TODO: Add your command handler code here
+	this->clear();
+	
+}
+
+void CCGWORK1112View::OnMoveX() 
+{
+	// TODO: Add your command handler code here
+	cube_Performance = MOVE_X;
+	
+}
+
+void CCGWORK1112View::OnMoveY() 
+{
+	// TODO: Add your command handler code here
+	cube_Performance = MOVE_Y;
+	
+}
+
+void CCGWORK1112View::OnMoveZ() 
+{
+	// TODO: Add your command handler code here
+	cube_Performance = MOVE_Z;
+	
+}
+
+void CCGWORK1112View::OnSpinX() 
+{
+	// TODO: Add your command handler code here
+	cube_Performance = SPIN_X;
+	
+}
+
+void CCGWORK1112View::OnSpinY() 
+{
+	// TODO: Add your command handler code here
+	cube_Performance = SPIN_Y;
+	
+}
+
+void CCGWORK1112View::OnSpinZ() 
+{
+	// TODO: Add your command handler code here
+	cube_Performance = SPIN_Z;
+	
+}
+
+void CCGWORK1112View::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+{
+	// TODO: Add your message handler code here and/or call default
+	bool flag = false;
+	if (type == CUBE) {
+		if (cube_Performance == MOVE_X) {
+			if (nChar == 65) {
+				cube->move_x(-step);
+				flag = true;
+			} else if (nChar == 76) {
+				cube->move_x(step);
+				flag = true;
+			}
+		} else if (cube_Performance == MOVE_Y) {
+
+		}
+
+		if (flag) {
+			CDC* pDC = this->GetDC();
+			list->RemoveAll();
+			this->Invalidate();
+			list->Add(cube);
+			cube->draw(pDC);
+			this->ReleaseDC(pDC);
+		}
+	}
+	
+	CView::OnKeyDown(nChar, nRepCnt, nFlags);
+}

@@ -48,6 +48,7 @@
 #define ID_DRAW_BEZIER                  32784
 #define ID_DRAW_LINE                    32785
 #define ID_SER_COLOR3                   32786
+#define ID_CLEAN_SCREEN                 32787
 
 // Next default values for new objects
 // 
@@ -55,7 +56,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        134
-#define _APS_NEXT_COMMAND_VALUE         32787
+#define _APS_NEXT_COMMAND_VALUE         32788
 #define _APS_NEXT_CONTROL_VALUE         1027
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

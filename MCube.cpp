@@ -28,7 +28,7 @@ MCube::MCube()
 
 	view.x = 0;
 	view.y = 0;
-	view.z = 300;
+	view.z = -300;
 
 	init();
 	
@@ -41,10 +41,11 @@ MCube::~MCube()
 }
 
 void MCube::draw(CDC* pDC) {
+
 	calNormalVector();
 
 	for (int i = 0; i < 6; i++) {
-		if (isView(normalVector[i])) {
+		if (isView(i)) {
 			drawFace(i, pDC);
 		}
 	}
@@ -68,22 +69,22 @@ void MCube::init() {
 
 	face[0][0] = 0;
 	face[0][1] = 1;
-	face[0][2] = 4;
-	face[0][3] = 7;
+	face[0][2] = 5;
+	face[0][3] = 4;
 
 	face[1][0] = 1;
 	face[1][1] = 2;
-	face[1][2] = 5;
-	face[1][3] = 4;
+	face[1][2] = 6;
+	face[1][3] = 5;
 
 	face[2][0] = 2;
 	face[2][1] = 3;
-	face[2][2] = 6;
-	face[2][3] = 5;
+	face[2][2] = 7;
+	face[2][3] = 6;
 
 	face[3][0] = 0;
-	face[3][1] = 7;
-	face[3][2] = 6;
+	face[3][1] = 4;
+	face[3][2] = 7;
 	face[3][3] = 3;
 
 	face[4][0] = 4;
@@ -106,18 +107,33 @@ void MCube::calNormalVector() {
 		MPoint line1 = MPoint(p1.x - p0.x, p1.y - p0.y, p1.z - p0.z);
 		MPoint line2 = MPoint(p2.x - p0.x, p2.y - p0.y, p2.z - p0.z);
 
-		MPoint normal;
-		normal.x = line1.y * line2.z - line1.z * line2.y;
-		normal.y = line1.z * line2.x - line1.x * line2.z;
-		normal.z = line1.x * line2.y - line1.y * line2.x;
-
-		normalVector[i] = normal;
+		normalVector[i].x = line1.y * line2.z - line1.z * line2.y;
+		normalVector[i].y = line1.z * line2.x - line1.x * line2.z;
+		normalVector[i].z = line1.x * line2.y - line1.y * line2.x;
 	}
 }
 
-bool MCube::isView(MPoint vector) {
-	int a = view.x * vector.x + view.y * vector.y + view.z * vector.z;
+bool MCube::isView(int f) {
+	MPoint p1 = points[face[f][0]];
+	MPoint p2 = points[face[f][2]];
+	MPoint p;
+	p.x = (p1.x + p2.x)/2;
+	p.y = (p1.y + p2.y)/2;
+	p.z = (p1.z + p2.z)/2;
+	MPoint viewVector;
+	/*
+	viewVector.x = p.x - view.x;
+	viewVector.y = p.y - view.y;
+	viewVector.z = p.z - view.z;
+	*/
+	viewVector.x = view.x - p.x;
+	viewVector.y = view.y - p.y;
+	viewVector.z = view.z - p.z;
+
+
+	int a = viewVector.x * normalVector[f].x + viewVector.y * normalVector[f].y + viewVector.z * normalVector[f].z;
 	return a > 0;
+
 }
 
 void MCube::drawFace(int i, CDC * pDC) {
@@ -127,22 +143,20 @@ void MCube::drawFace(int i, CDC * pDC) {
 	MPoint p2 = points[face[i][2]];
 	MPoint p3 = points[face[i][3]];
 
-	MPoint midle(300, 300, -200);
-
-	int d = abs(midle.z);
+	int d = abs(view.z);
 	
 	CPoint point0, point1, point2, point3;
-	point0.x = p0.x;
-	point0.y = p0.y;
+	point0.x = view.x + d*(p0.x - view.x)/(p0.z - view.z);
+	point0.y = view.y + d*(p0.y - view.y)/(p0.z - view.z);
 
-	point1.x = p1.x;
-	point1.y = p1.y;
+	point1.x = view.x + d*(p1.x - view.x)/(p1.z - view.z);
+	point1.y = view.y + d*(p1.y - view.y)/(p1.z - view.z);
 
-	point2.x = p2.x;
-	point2.y = p2.y;
+	point2.x = view.x + d*(p2.x - view.x)/(p2.z - view.z);
+	point2.y = view.y + d*(p2.y - view.y)/(p2.z - view.z);
 
-	point3.x = p3.x;
-	point3.y = p3.y;
+	point3.x = view.x + d*(p3.x - view.x)/(p3.z - view.z);
+	point3.y = view.y + d*(p3.y - view.y)/(p3.z - view.z);
 
 	Line line1(point0, point1);
 	Line line2(point1, point2);
@@ -158,4 +172,33 @@ void MCube::drawFace(int i, CDC * pDC) {
 	line2.draw(pDC);
 	line3.draw(pDC);
 	line4.draw(pDC);
+}
+
+void MCube::move_x(int step) {
+	for (int i = 0; i < 8; i++) {
+		points[i].x += step;
+	}
+}
+
+void MCube::move_y(int step) {
+	for (int i = 0; i < 8; i++) {
+		points[i].y += step;
+	}
+}
+
+void MCube::move_z(int step) {
+	for (int i = 0; i < 8; i++) {
+		points[i].z += step;
+	}
+}
+
+
+void MCube::rotate_x(int angle) {
+
+}
+void MCube::rotate_y(int angle) {
+
+}
+void MCube::rotate_z(int angle) {
+
 }
