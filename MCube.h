@@ -11,6 +11,15 @@
 
 #include "BasicType.h"
 #include "MPoint.h"
+#include "Line.h"
+//#include <stack>
+//using namespace std;
+
+typedef struct {
+	int y_max;
+	double x_min;
+	double k;
+} EdgeTable;
 
 class MCube : public BasicType  
 {
@@ -41,13 +50,25 @@ private:
 	MPoint view;
 
 	COLORREF colors[6];
+
+	//stack<CPoint> s;
 private:
 	void calNormalVector();
+//	void drawColor(CDC * pDC, CPoint startPoint, COLORREF col);
+	void drawColor(CDC * pDC, Line lines[], int n, COLORREF col);
+	void processLine(Line lines[], int n);
+	bool isInnerPoint(Line & line, int y);
+	int getEt(EdgeTable et[], Line lines[], int y0, int n);
+	void sortEt(EdgeTable et[], int count);
+	int m_max(int a, int b);
+	int m_min(int a, int b);
 private:
 	void init();
 	bool isView(int f);
 	void drawFace(int i, CDC * pDC);
 
 };
+
+
 
 #endif // !defined(AFX_MCUBE_H__008AF51F_F80B_418D_862E_F0E858889425__INCLUDED_)

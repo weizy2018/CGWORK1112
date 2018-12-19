@@ -15,14 +15,14 @@ Class3=CCGWORK1112View
 Class4=CMainFrame
 
 ResourceCount=6
-Resource1=IDD_ABOUTBOX
+Resource1=IDD_DIALOG3
 Class5=CAboutDlg
-Resource2=IDR_MAINFRAME
-Resource3=IDD_DIALOG3
+Resource2=IDD_DIALOG2
+Resource3=IDD_DIALOG1
 Class6=InputColorDlg2
-Resource4=IDD_DIALOG2
+Resource4=IDD_ABOUTBOX
 Class7=InputColorDlgB
-Resource5=IDD_DIALOG1
+Resource5=IDR_MAINFRAME
 Class8=Translation
 Resource6=IDD_DIALOG4
 
